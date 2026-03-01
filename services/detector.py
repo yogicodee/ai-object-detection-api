@@ -1,17 +1,13 @@
 from ultralytics import YOLO
 import os
-import gdown
 
 MODEL_PATH = "best.pt"
 
-FILE_ID = "1-1ZENMjtZGkQjCcEZ4q3My6VNbRwmz1w"
-URL = f"https://drive.google.com/uc?id={FILE_ID}"
-
+# pastikan file model ada
 if not os.path.exists(MODEL_PATH):
-    print("Downloading YOLO model from Google Drive...")
-    gdown.download(URL, MODEL_PATH, quiet=False)
-    print("Model downloaded")
+    raise FileNotFoundError("best.pt not found in project root")
 
+# load model sekali saat server start
 model = YOLO(MODEL_PATH)
 
 
