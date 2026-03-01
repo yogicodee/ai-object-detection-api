@@ -1,15 +1,15 @@
 from ultralytics import YOLO
 import os
-import urllib.request
+import gdown
 
 MODEL_PATH = "best.pt"
 
-MODEL_URL = "https://drive.google.com/uc?export=download&id=1-1ZENMjtZGkQjCcEZ4q3My6VNbRwmz1w"
+FILE_ID = "1-1ZENMjtZGkQjCcEZ4q3My6VNbRwmz1w"
+URL = f"https://drive.google.com/uc?id={FILE_ID}"
 
-# download model jika belum ada
 if not os.path.exists(MODEL_PATH):
     print("Downloading YOLO model from Google Drive...")
-    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+    gdown.download(URL, MODEL_PATH, quiet=False)
     print("Model downloaded")
 
 model = YOLO(MODEL_PATH)
